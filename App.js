@@ -1,20 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import TestButton from "./components/TestButton";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>MuuApp</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <TestButton title="Test Button" color="primary" />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
