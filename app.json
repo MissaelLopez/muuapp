@@ -29,5 +29,8 @@
     "web": {
       "favicon": "./assets/favicon.png"
     }
+  },
+  "env": {
+    "SERVER_URL": "http://192.168.172.112:3000"
   }
 }
