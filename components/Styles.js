@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
-const primaryColor = "#785a35";
-const secondaryColor = "#785a35";
+const primaryColor = "#c79556";
+const secondaryColor = "#fcea10";
 
 export const styles = StyleSheet.create({
   container: {
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     borderRadius: 4,
   },
   primaryButton: {
-    backgroundColor: "#c79556",
+    backgroundColor: primaryColor,
     padding: 7,
     marginTop: 10,
     marginBottom: 20,
@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
     width: "80%",
   },
   secondaryButton: {
-    backgroundColor: "#fcea10",
+    backgroundColor: secondaryColor,
     padding: 7,
     marginTop: 20,
     borderRadius: 4,

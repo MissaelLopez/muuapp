@@ -29,7 +29,7 @@ const Login = ({ navigation }) => {
 
       if (resp.token) {
         const token = await AsyncStorage.setItem("@token", resp.token);
-        navigation.navigate("Home");
+        navigation.navigate("App");
       } else {
         Alert.alert("Usuario o contraseña incorrecta");
       }

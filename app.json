@@ -24,13 +24,14 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.muuappTest001"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     }
   },
   "env": {
-    "SERVER_URL": "http://192.168.172.112:3000"
+    "SERVER_URL": "http://192.168.1.108:3000"
   }
 }
