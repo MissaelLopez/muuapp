@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Text, Alert } from "react-native";
 import { BackHandler } from "react-native";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   useEffect(() => {

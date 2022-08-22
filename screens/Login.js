@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Alert, View, Image } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import Config from "../app.json";
+import { setAuth } from "../store/slices/user";
+import { authAPI } from "../api";
+import { useDispatch } from "react-redux";
 import Input from "../components/Input";
 import PrimaryButton from "../components/PrimaryButton";
 import { styles } from "../components/Styles";
@@ -11,30 +12,23 @@ import ForgotPassText from "../components/ForgotPassText";
 import SecondaryButton from "../components/SecondaryButton";
 
 const Login = ({ navigation }) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
   const onLogin = async () => {
     try {
-      const res = await fetch(`${Config.env.SERVER_URL}/api/auth/`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+      const { data, status } = await authAPI.post("/auth", {
+        email,
+        password,
       });
 
-      const resp = await res.json();
-
-      if (resp.token) {
-        const token = await AsyncStorage.setItem("@token", resp.token);
+      if (status === 200) {
+        dispatch(setAuth(data));
         navigation.navigate("App");
-      } else {
-        Alert.alert("Usuario o contraseña incorrecta");
       }
     } catch (error) {
-      Alert.alert("Ha ocurrido un error. Intente de nuevo");
+      Alert.alert("Usuario o contraseña incorrecta");
     }
   };
 
