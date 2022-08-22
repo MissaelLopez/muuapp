@@ -3,7 +3,8 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { Image, ImageBackground, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
+import { useSelector } from "react-redux";
 
 const bgi = {
   uri: "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000",
@@ -14,6 +15,8 @@ const image = {
 };
 
 const CustomDrawer = (props) => {
+  const { user } = useSelector((state) => state.user);
+  
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView
@@ -30,7 +33,7 @@ const CustomDrawer = (props) => {
               marginBottom: 10,
             }}
           />
-          <Text style={{ color: "#fff", fontSize: 18 }}>Missael López</Text>
+          <Text style={{ color: "#fff", fontSize: 18 }}>{user.fullname}</Text>
         </View>
         <View style={{ flex: 1, backgroundColor: "#fff" }}>
           <DrawerItemList {...props} />
