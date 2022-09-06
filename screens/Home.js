@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
-import { Text, Alert } from "react-native";
+import { Alert, Text, View } from "react-native";
 import { BackHandler } from "react-native";
 import { useSelector } from "react-redux";
+import PrimaryButton from "../components/Buttons/PrimaryButton";
 
-const Home = () => {
+const Home = ({ navigation }) => {
+  const { ranchs } = useSelector((state) => state.ranchs);
+
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", handleBackPressHandler);
     return () => {
@@ -13,6 +16,10 @@ const Home = () => {
       );
     };
   }, []);
+
+  const handlePress = () => {
+    navigation.navigate("Finca");
+  };
 
   const handleBackPressHandler = () => {
     Alert.alert(
@@ -36,7 +43,15 @@ const Home = () => {
     return true;
   };
 
-  return <Text>MuuApp</Text>;
+  return (
+    <View>
+      {ranchs.length ? (
+        <Text>Hay Finca, se puede registar</Text>
+      ) : (
+        <PrimaryButton text="Registar Finca" onPress={handlePress} />
+      )}
+    </View>
+  );
 };
 
 export default Home;

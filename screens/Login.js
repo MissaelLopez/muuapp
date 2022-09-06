@@ -4,17 +4,17 @@ import { setAuth } from "../store/slices/user";
 import { authAPI } from "../api";
 import { useDispatch } from "react-redux";
 import Input from "../components/Input";
-import PrimaryButton from "../components/PrimaryButton";
+import PrimaryButton from "../components/Buttons/PrimaryButton";
+import SecondaryButton from "../components/Buttons/SecondaryButton";
 import { styles } from "../components/Styles";
 import logo from "../assets/images/logo.png";
 import Subtitle from "../components/Subtitle";
 import ForgotPassText from "../components/ForgotPassText";
-import SecondaryButton from "../components/SecondaryButton";
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState("missaelnj8@gmail.com");
+  const [password, setPassword] = useState("mbLL1110*");
 
   const onLogin = async () => {
     try {

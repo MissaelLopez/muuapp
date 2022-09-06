@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Alert, View, Image } from "react-native";
 import Config from "../app.json";
 import Input from "../components/Input";
-import PrimaryButton from "../components/PrimaryButton";
-import { styles } from "../components/Styles";
-import logo from "../assets/images/logo.png";
+import PrimaryButton from "../components/Buttons/PrimaryButton";
+import SecondaryButton from "../components/Buttons/SecondaryButton";
 import Subtitle from "../components/Subtitle";
-import SecondaryButton from "../components/SecondaryButton";
 import ForgotPassText from "../components/ForgotPassText";
+import logo from "../assets/images/logo.png";
+import { styles } from "../components/Styles";
 
 const Signup = ({ navigation }) => {
   const [fullname, setFullname] = useState(null);

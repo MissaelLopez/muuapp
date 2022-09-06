@@ -1,8 +1,5 @@
 import { StyleSheet } from "react-native";
 
-const primaryColor = "#c79556";
-const secondaryColor = "#fcea10";
-
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -34,27 +31,40 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 4,
   },
-  primaryButton: {
-    backgroundColor: primaryColor,
-    padding: 7,
-    marginTop: 10,
-    marginBottom: 20,
-    borderRadius: 4,
-    width: "80%",
+});
+
+export const ranchsView = StyleSheet.create({
+  container: {
+    flex: 1,
   },
-  secondaryButton: {
-    backgroundColor: secondaryColor,
-    padding: 7,
-    marginTop: 20,
-    borderRadius: 4,
-    width: "80%",
+});
+
+export const ranchCard = StyleSheet.create({
+  card: {
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 6,
+    shadowOpacity: 0.26,
+    elevation: 8,
+    backgroundColor: "white",
+    padding: "5%",
+    borderRadius: 10,
+    marginVertical: "2.5%",
+    marginHorizontal: "5%",
+    flexDirection: "row",
   },
-  textPrimaryButton: {
-    textAlign: "center",
-    color: "white",
+  cardContent: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
-  textSecondaryButton: {
-    textAlign: "center",
-    color: "#c79556",
+  cardImage: {
+    height: 40,
+    width: 40,
+    borderRadius: 40,
+  },
+  isSelected: {
+    paddingHorizontal: 16,
   },
 });
