@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { Alert, Text, View } from "react-native";
-import { BackHandler } from "react-native";
+import { Alert, Text, View, BackHandler } from "react-native";
 import { useSelector } from "react-redux";
-import PrimaryButton from "../components/Buttons/PrimaryButton";
+import PrimaryButton from "../components/PrimaryButton";
 
 const Home = ({ navigation }) => {
   const { ranchs } = useSelector((state) => state.ranchs);

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Alert, View, Image } from "react-native";
-import { setAuth } from "../store/slices/user";
+import { setAuth } from "../../store/slices/user";
 import { authAPI } from "../api";
 import { useDispatch } from "react-redux";
 import Input from "../components/Input";
-import PrimaryButton from "../components/Buttons/PrimaryButton";
-import SecondaryButton from "../components/Buttons/SecondaryButton";
+import PrimaryButton from "../components/PrimaryButton";
+import SecondaryButton from "../components/SecondaryButton";
 import { styles } from "../components/Styles";
 import logo from "../assets/images/logo.png";
 import Subtitle from "../components/Subtitle";

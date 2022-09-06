@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Alert, View, Image } from "react-native";
-import Config from "../app.json";
+import Config from "../../app.json";
 import Input from "../components/Input";
-import PrimaryButton from "../components/Buttons/PrimaryButton";
-import SecondaryButton from "../components/Buttons/SecondaryButton";
+import PrimaryButton from "../components/PrimaryButton";
+import SecondaryButton from "../components/SecondaryButton";
 import Subtitle from "../components/Subtitle";
 import ForgotPassText from "../components/ForgotPassText";
 import logo from "../assets/images/logo.png";

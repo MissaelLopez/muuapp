@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { View, Text } from "react-native";
 import { ranchsView as styles } from "../../components/Styles";
-import RanchCard from "../../components/Ranch/RanchCard";
+import RanchCard from "../../components/Card";
 
 const Ranchs = ({ navigation }) => {
   const { ranchs } = useSelector((state) => state.ranchs);

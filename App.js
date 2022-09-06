@@ -3,7 +3,7 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import AuthStack from "./navigate/AuthStack";
+import AuthStack from "./src/navigate/AuthStack";
 
 const App = () => {
   return (

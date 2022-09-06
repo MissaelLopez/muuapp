@@ -3,7 +3,7 @@ import { styles } from './Styles';
 
 const Subtitle = (props) => {
   return (
-    <Text style={styles.subtitule}>{props.text}</Text>
+    <Text style={styles.subtitle}>{props.text}</Text>
   )
 }
 

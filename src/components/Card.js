@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { ranchCard as styles } from "../../components/Styles";
+import { cardStyles as styles } from "./Styles";
 import AntIcon from "react-native-vector-icons/AntDesign";
 
 const bgi = {

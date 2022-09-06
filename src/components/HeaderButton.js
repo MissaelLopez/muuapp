@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity } from "react-native";
 import AntIcon from "react-native-vector-icons/AntDesign";
-import { styles } from "./Styles";
+import { buttonsStyle as styles } from "./Styles";
 
 const HeaderButton = (props) => {
   return (

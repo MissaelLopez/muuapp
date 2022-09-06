@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
+import { View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../store/slices/user";
-import { setRanch } from "../store/slices/ranchs";
+import { setUser } from "../../store/slices/user";
+import { setRanch } from "../../store/slices/ranchs";
 import { getAPI } from "../api";
 import MCIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Home from "../screens/Home";
 import Ranchs from "../screens/Ranch/Ranchs";
 import CustomDrawer from "../components/CustomDrawer";
-import { View } from "react-native";
-import HeaderButton from "../components/Buttons/HeaderButton";
+import HeaderButton from "../components/HeaderButton";
 
 const Drawer = createDrawerNavigator();
 

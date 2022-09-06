@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { Text, View } from "react-native";
 import { useSelector } from "react-redux";
@@ -24,13 +25,13 @@ const RanchRegister = () => {
     user: "",
   });
 
+  useEffect(() => {
+    console.log(ranch);
+  }, []);
+
   return (
     <View style={styles.container}>
-      {ranchs.length ? (
-        <Text>Mostrando Detalles</Text>
-      ) : (
-        <Input placeholder="Nombre" autoCapitalize="none" />
-      )}
+      <Input placeholder="Nombre" autoCapitalize="none" />
     </View>
   );
 };

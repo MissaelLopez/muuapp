@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../screens/Login";
 import Signup from "../screens/Signup";
 import AppStack from "./AppStack";
-import RanchDetail from "../components/Ranch/RanchDetail";
+import RanchDetail from "../components/RanchDetail";
 import RanchRegister from "../screens/Ranch/RanchRegister";
 
 const Stack = createNativeStackNavigator();
