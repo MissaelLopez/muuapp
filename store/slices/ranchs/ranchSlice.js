@@ -13,7 +13,10 @@ export const ranchSlice = createSlice({
     setRanch: (state, action) => {
       state.ranchs = action.payload;
     },
+    updateRanch: (state, action) => {
+      state.ranchs.push(action.payload);
+    },
   }
 });
 
-export const { startLoadingRanch, setRanch} = ranchSlice.actions;
+export const { startLoadingRanch, setRanch, updateRanch} = ranchSlice.actions;

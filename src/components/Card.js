@@ -2,13 +2,13 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { cardStyles as styles } from "./Styles";
 import AntIcon from "react-native-vector-icons/AntDesign";
 
-const bgi = {
-  uri: "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000",
-};
-
 const RanchCard = ({ navigation, ranch }) => {
   const handlePress = () => {
     navigation.navigate("Detalle_Finca", { ranch: ranch, title: ranch.name });
+  };
+
+  const bgi = {
+    uri: ranch.picture,
   };
 
   return (

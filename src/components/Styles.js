@@ -70,6 +70,7 @@ export const styles = StyleSheet.create({
     height: 50,
     marginTop: 20,
     borderRadius: 4,
+    backgroundColor: "transparent",
   },
 });
 
