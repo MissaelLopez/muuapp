@@ -3980,7 +3980,7 @@
   "resolved" "https://registry.npmjs.org/is-buffer/-/is-buffer-1.1.6.tgz"
   "version" "1.1.6"
 
-"is-core-module@^2.8.1":
+"is-core-module@^2.9.0":
   "integrity" "sha512-+5FPy5PnwmO3lvfMb0AsoPaBG+5KHUI0wYFXOtYPnVVVspTFUuMZNfNaNVRt3FZadstu2c8x23vykRW/NBoU6A=="
   "resolved" "https://registry.npmjs.org/is-core-module/-/is-core-module-2.9.0.tgz"
   "version" "2.9.0"
@@ -5719,6 +5719,11 @@
     "react-freeze" "^1.0.0"
     "warn-once" "^0.1.0"
 
+"react-native-select-dropdown@^2.0.4":
+  "integrity" "sha512-bv8iznvf04FThqCkkD4kxlbNjo2d69yLcEe3nUwalQ6ea2NXqUJRQ5uUr1SEDSCH8l6IQlmog8rkHthrLEzQ9A=="
+  "resolved" "https://registry.npmjs.org/react-native-select-dropdown/-/react-native-select-dropdown-2.0.4.tgz"
+  "version" "2.0.4"
+
 "react-native-vector-icons@^9.2.0":
   "integrity" "sha512-wKYLaFuQST/chH3AJRjmOLoLy3JEs1JR6zMNgTaemFpNoXs0ztRnTxcxFD9xhX7cJe1/zoN5BpQYe7kL0m5yyA=="
   "resolved" "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-9.2.0.tgz"
@@ -5981,11 +5986,11 @@
   "version" "0.2.1"
 
 "resolve@^1.13.1", "resolve@^1.14.2":
-  "integrity" "sha512-Hhtrw0nLeSrFQ7phPp4OOcVjLPIeMnRlr5mcnVuMe7M/7eBn98A3hmFRLoFo3DLZkivSYwhRUJTyPyWAk56WLw=="
-  "resolved" "https://registry.npmjs.org/resolve/-/resolve-1.22.0.tgz"
-  "version" "1.22.0"
+  "integrity" "sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw=="
+  "resolved" "https://registry.npmjs.org/resolve/-/resolve-1.22.1.tgz"
+  "version" "1.22.1"
   dependencies:
-    "is-core-module" "^2.8.1"
+    "is-core-module" "^2.9.0"
     "path-parse" "^1.0.7"
     "supports-preserve-symlinks-flag" "^1.0.0"
 

@@ -1,16 +1,19 @@
 import React, { useEffect } from "react";
+import { View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../store/slices/user";
+import { setUser } from "../../store/slices/user";
+import { setRanch } from "../../store/slices/ranchs";
 import { getAPI } from "../api";
 import MCIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Home from "../screens/Home";
-import RanchRegister from "../screens/RanchRegister";
+import Ranchs from "../screens/Ranch/Ranchs";
 import CustomDrawer from "../components/CustomDrawer";
+import HeaderButton from "../components/HeaderButton";
 
 const Drawer = createDrawerNavigator();
 
-const AppStack = () => {
+const AppStack = ({ navigation }) => {
   const { id, token } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -26,12 +29,17 @@ const AppStack = () => {
       version: data.version,
     };
 
+    dispatch(setRanch(data.ranchs));
     dispatch(setUser(userData));
   };
 
   useEffect(() => {
     getUserData();
   }, []);
+
+  const handlePress = () => {
+    navigation.navigate("Registrar_Finca")
+  };
 
   return (
     <Drawer.Navigator
@@ -53,10 +61,15 @@ const AppStack = () => {
       />
       <Drawer.Screen
         name="Finca"
-        component={RanchRegister}
+        component={Ranchs}
         options={{
           drawerIcon: ({ color }) => (
-            <MCIcon name="warehouse" size={22} color={color} />
+            <MCIcon name="warehouse" size={2} color={color} />
+          ),
+          headerRight: () => (
+            <View style={{ width: "50%" }}>
+              <HeaderButton text="Nuevo" onPress={handlePress}/>
+            </View>
           ),
         }}
       />

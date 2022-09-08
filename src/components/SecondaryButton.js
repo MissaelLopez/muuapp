@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text } from "react-native";
-import { styles } from "./Styles";
+import { buttonsStyle as styles } from "./Styles";
 
 const SecondaryButton = (props) => {
   return (
