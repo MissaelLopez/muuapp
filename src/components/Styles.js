@@ -71,6 +71,13 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 4,
     backgroundColor: "transparent",
+    color: "#936037",
+    fontSize: 16,
+  },
+  selectText: {
+    color: "#936037",
+    textAlign: "left",
+    fontSize: 16,
   },
 });
 
@@ -107,5 +114,49 @@ export const cardStyles = StyleSheet.create({
   },
   isSelected: {
     paddingHorizontal: 16,
+  },
+});
+
+export const ranchRegisterStyles = StyleSheet.create({
+  container: {
+    paddingVertical: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  row: { flexDirection: "row" },
+  input: {
+    padding: 10,
+    borderColor: "#936037",
+    borderBottomWidth: 1,
+    width: "80%",
+    height: 50,
+    marginTop: 20,
+    borderRadius: 4,
+    backgroundColor: "transparent",
+    color: "#936037",
+    fontSize: 16,
+  },
+  select: {
+    padding: 10,
+    borderColor: "#936037",
+    borderBottomWidth: 1,
+    width: "40%",
+    height: 50,
+    marginTop: 20,
+    borderRadius: 4,
+    backgroundColor: "transparent",
+    color: "#936037",
+  },
+  selectText: {
+    color: "#936037",
+    textAlign: "left",
+    fontSize: 12,
+  },
+  ranchPicture: {
+    height: 200,
+    width: 200,
+    borderRadius: 100,
+    resizeMode: "contain",
+    marginBottom: 10,
   },
 });

@@ -1,46 +1,30 @@
 import { View, Text, Button } from "react-native";
-import { Alert } from "react-native-web";
 import { useDispatch, useSelector } from "react-redux";
-import { getAPI } from "../api";
+import { setRanch } from "../../store/slices/ranchs";
+import { deleteRanch, getUserById } from "../api";
+import CustomAlert from "./CustomAlert";
 
 const RanchDetail = (props) => {
   const { id, token } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const ranch = props.route.params.ranch;
 
-  const sendAlert = () => {
-    return Alert.alert(
-      "MuuApp",
-      "La finca ha sido eliminada",
-      [
-        {
-          text: "Aceptar",
-          onPress: () => {
-            dispatch(updateRanch(ranch));
-            navigation.navigate("Finca");
-          },
-        },
-      ],
-      {
-        cancelable: false,
-      }
-    );
+  const updateRanchStore = async () => {
+    const { data, status } = await getUserById(id, token);
+    if (status === 200) {
+      dispatch(setRanch(data.ranchs));
+    }
   };
 
   const handlePress = async () => {
-    try {
-      const { data, status } = await getAPI.delete(
-        `/ranchs/${id}/${ranch._id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+    const { status } = await deleteRanch(id, ranch._id, token);
+    if (status === 200) {
+      updateRanchStore();
+      CustomAlert(
+        "MuuApp",
+        "Rancho Eliminado",
+        props.navigation.navigate("Finca")
       );
-
-      if (status === 200) {
-        sendAlert();
-      }
-    } catch (error) {
-      Alert.alert("Ha ocurrido un error al eliminar la finca");
     }
   };
 

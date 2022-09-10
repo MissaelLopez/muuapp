@@ -16,7 +16,7 @@ const RanchCard = ({ navigation, ranch }) => {
       <View style={styles.cardContent}>
         <Image source={bgi} style={styles.cardImage} />
         <Text>{ranch.name}</Text>
-        <Text>{ranch.name}</Text>
+        <Text>{ranch.purpose}</Text>
       </View>
       {/* {props.ranch._id === "6303f95dc2f324fb76cbb991" && (
         <Text style={styles.isSelected}>

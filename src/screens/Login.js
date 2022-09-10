@@ -13,8 +13,8 @@ import ForgotPassText from "../components/ForgotPassText";
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("missaelnj8@gmail.com");
-  const [password, setPassword] = useState("mbLL1110*");
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
   const onLogin = async () => {
     try {
