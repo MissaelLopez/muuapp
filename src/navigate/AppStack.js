@@ -4,7 +4,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/slices/user";
 import { setRanch } from "../../store/slices/ranchs";
-import { getAPI } from "../api";
+import { getUserById } from "../api";
 import MCIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Home from "../screens/Home";
 import Ranchs from "../screens/Ranch/Ranchs";
@@ -18,19 +18,19 @@ const AppStack = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const getUserData = async () => {
-    const { data } = await getAPI.get(`/users/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const { data, status } = await getUserById(id, token);
 
-    const userData = {
-      email: data.email,
-      fullname: data.fullname,
-      username: data.username,
-      version: data.version,
-    };
+    if (status === 200) {
+      const userData = {
+        email: data.email,
+        fullname: data.fullname,
+        username: data.username,
+        version: data.version,
+      };
 
-    dispatch(setRanch(data.ranchs));
-    dispatch(setUser(userData));
+      dispatch(setRanch(data.ranchs));
+      dispatch(setUser(userData));
+    }
   };
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const AppStack = ({ navigation }) => {
   }, []);
 
   const handlePress = () => {
-    navigation.navigate("Registrar_Finca")
+    navigation.navigate("Registrar_Finca");
   };
 
   return (
@@ -68,7 +68,7 @@ const AppStack = ({ navigation }) => {
           ),
           headerRight: () => (
             <View style={{ width: "50%" }}>
-              <HeaderButton text="Nuevo" onPress={handlePress}/>
+              <HeaderButton text="Nuevo" onPress={handlePress} />
             </View>
           ),
         }}
