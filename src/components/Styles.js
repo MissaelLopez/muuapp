@@ -7,17 +7,17 @@ export const buttonsStyle = StyleSheet.create({
   primaryButton: {
     backgroundColor: primaryColor,
     padding: 7,
-    marginTop: 10,
+    marginTop: 15,
     marginBottom: 20,
     borderRadius: 4,
-    width: "80%",
+    width: "90%",
   },
   secondaryButton: {
     backgroundColor: secondaryColor,
     padding: 7,
     marginTop: 20,
     borderRadius: 4,
-    width: "80%",
+    width: "90%",
   },
   textPrimaryButton: {
     textAlign: "center",
@@ -79,6 +79,31 @@ export const styles = StyleSheet.create({
     textAlign: "left",
     fontSize: 16,
   },
+
+  //estilos formulario rancho
+  inputBoxCont: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: '#936037',
+    borderRadius: 4,
+    width: '90%',
+    marginTop: 15,
+    paddingHorizontal: 3,
+    height: 40,
+    marginRight: '4%',
+    marginLeft: '4%',
+
+  },
+  inputBox: {
+    marginHorizontal: 5,
+    flex: 1,
+    fontSize: 14,
+
+  },
+  iconStyle: {
+    color: '#936037'
+  },
 });
 
 export const ranchsView = StyleSheet.create({
@@ -119,7 +144,7 @@ export const cardStyles = StyleSheet.create({
 
 export const ranchRegisterStyles = StyleSheet.create({
   container: {
-    paddingVertical: 50,
+    paddingVertical: 20,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -137,26 +162,78 @@ export const ranchRegisterStyles = StyleSheet.create({
     fontSize: 16,
   },
   select: {
-    padding: 10,
     borderColor: "#936037",
-    borderBottomWidth: 1,
-    width: "40%",
-    height: 50,
-    marginTop: 20,
-    borderRadius: 4,
     backgroundColor: "transparent",
     color: "#936037",
+    borderColor: '#936037',
+    borderRadius: 4,
+    paddingHorizontal: 0,
+    height: 40,
+    
   },
   selectText: {
     color: "#936037",
     textAlign: "left",
-    fontSize: 12,
+    fontSize: 14,
   },
   ranchPicture: {
-    height: 200,
-    width: 200,
+    height: 150,
+    width: 150,
     borderRadius: 100,
     resizeMode: "contain",
     marginBottom: 10,
   },
+  inputBoxCont: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: '#936037',
+    borderRadius: 4,
+    width: '90%',
+    marginTop: 15,
+    paddingHorizontal: 3,
+    height: 40,
+    marginRight: '4%',
+    marginLeft: '4%',
+  },
+  iconStyle: {
+    color: '#936037'
+  },
+  subtitule: {
+    fontSize: 20,
+    color: '#936037',
+    paddingBottom: 10,
+  },
+  textInput: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: '90%',
+    marginTop: 15,
+    paddingHorizontal: 3,
+    height: 40,
+    marginRight: '4%',
+    marginLeft: '4%',
+  },
+  subtitule2: {
+    fontSize: 18,
+    color: '#936037',
+    paddingTop: 8,
+    flex: 1,
+    paddingHorizontal: 5,
+  },
+  buttont: {
+    backgroundColor: "#785a35",
+    padding: 5,
+    marginTop: 15,
+    borderRadius: 4,
+    width: '45%',
+  },
+  textButton: {
+    textAlign: 'center',
+    color: 'white'
+  },
 });
+
+
+
+  

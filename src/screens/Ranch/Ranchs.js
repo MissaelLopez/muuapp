@@ -17,6 +17,7 @@ const Ranchs = ({ navigation }) => {
   } else {
     return <Text>Comienza a registrar</Text>;
   }
+
 };
 
 export default Ranchs;

@@ -1,15 +1,28 @@
 import { useState } from "react";
-import { firebase } from "../../../firebaseConfig";
-import { View, Alert, Button, Image } from "react-native";
+import {
+  View,
+  Alert,
+  Button,
+  Image,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { setRanch } from "../../../store/slices/ranchs";
 import { getUserById, postAPI } from "../../api";
 import SelectDropdown from "react-native-select-dropdown";
 import * as ImagePicker from "expo-image-picker";
-import Input from "../../components/Input";
+// import Input from "../../components/Input";
 import PrimaryButton from "../../components/PrimaryButton";
 import { ranchRegisterStyles as styles } from "../../components/Styles";
 import CustomAlert from "../../components/CustomAlert";
+import InputForm from "../../components/InputForm";
+import {
+  MaterialCommunityIcons,
+  Entypo,
+  MaterialIcons,
+  Fontisto
+} from "@expo/vector-icons";
 
 const RanchRegister = ({ navigation }) => {
   const { id, token } = useSelector((state) => state.user);
@@ -104,74 +117,112 @@ const RanchRegister = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.subtitule}>Ingresa los datos de tu Finca</Text>
+
       <Image
         source={{
           uri: ranch.picture,
         }}
         style={styles.ranchPicture}
       />
-      <Button title="Seleccionar imagen" onPress={openImagePickerAsync} />
-      <Input
+      <TouchableOpacity style={styles.buttont} onPress={openImagePickerAsync}>
+        <Text style={styles.textButton}>Seleccionar imagen</Text>
+      </TouchableOpacity>
+
+      <InputForm
         onChangeText={(name) => setRanchData({ ...ranch, name })}
         value={ranch.name}
-        placeholder="Nombre"
-        style={styles.input}
+        name="house-siding"
+        placeholder="Nombre de la finca"
       />
-      <View style={styles.row}>
-        <SelectDropdown
-          data={purpose}
-          onSelect={(selectedItem) => {
-            setRanchData({ ...ranch, purpose: selectedItem });
-          }}
-          defaultButtonText="Selecciona una opción"
-          buttonStyle={styles.select}
-          buttonTextStyle={styles.selectText}
-        />
-        <SelectDropdown
-          data={production}
-          onSelect={(selectedItem) => {
-            setRanchData({ ...ranch, production: selectedItem });
-          }}
-          defaultButtonText="Selecciona una opción..."
-          buttonStyle={styles.select}
-          buttonTextStyle={styles.selectText}
-        />
+
+      <View
+        style={{
+          flexDirection: "row",
+          width: "47.6%",
+          justifyContent: "center",
+        }}
+      >
+        <View style={styles.inputBoxCont}>
+          <MaterialCommunityIcons
+            name="food-steak"
+            size={24}
+            style={styles.iconStyle}
+          />
+          <SelectDropdown
+            data={purpose}
+            onSelect={(selectedItem) => {
+              setRanchData({ ...ranch, purpose: selectedItem });
+            }}
+            defaultButtonText="Propósito..."
+            buttonStyle={styles.select}
+            buttonTextStyle={styles.selectText}
+          />
+        </View>
+
+        <View style={styles.inputBoxCont}>
+          <Fontisto name="injection-syringe" size={24} style={styles.iconStyle} />
+          <SelectDropdown
+            data={production}
+            onSelect={(selectedItem) => {
+              setRanchData({ ...ranch, production: selectedItem });
+            }}
+            defaultButtonText="Producción..."
+            buttonStyle={styles.select}
+            buttonTextStyle={styles.selectText}
+          />
+        </View>
       </View>
-      <View style={styles.row}>
-        <SelectDropdown
-          data={countries}
-          onSelect={(selectedItem) => {
-            setRanchData({ ...ranch, country: selectedItem });
-          }}
-          defaultButtonText="Selecciona una opción..."
-          buttonStyle={styles.select}
-          buttonTextStyle={styles.selectText}
-        />
-        <SelectDropdown
-          data={states}
-          onSelect={(selectedItem) => {
-            setRanchData({ ...ranch, state: selectedItem });
-          }}
-          defaultButtonText="Selecciona una opción..."
-          buttonStyle={styles.select}
-          buttonTextStyle={styles.selectText}
-        />
+
+      <InputForm
+        onChangeText={(areaSpace) => setRanchData({ ...ranch, areaSpace })}
+        value={ranch.areaSpace}
+        name="6-ft-apart"
+        placeholder="Área de espacio en hectáreas"
+      />
+      <View style={styles.textInput}>
+        <Entypo name="location" size={24} style={styles.iconStyle} />
+        <Text style={styles.subtitule2}>Ubicación</Text>
       </View>
-      <Input
+      <View
+        style={{
+          flexDirection: "row",
+          width: "47.6%",
+          justifyContent: "center",
+        }}
+      >
+        <View style={styles.inputBoxCont}>
+          <MaterialIcons name="keyboard-arrow-right" size={24} style={styles.iconStyle} />
+          <SelectDropdown
+            data={countries}
+            onSelect={(selectedItem) => {
+              setRanchData({ ...ranch, country: selectedItem });
+            }}
+            defaultButtonText="País..."
+            buttonStyle={styles.select}
+            buttonTextStyle={styles.selectText}
+          />
+        </View>
+        <View style={styles.inputBoxCont}>
+          <MaterialIcons name="keyboard-arrow-right" size={24} style={styles.iconStyle} />
+          <SelectDropdown
+            data={states}
+            onSelect={(selectedItem) => {
+              setRanchData({ ...ranch, state: selectedItem });
+            }}
+            defaultButtonText="Estado..."
+            buttonStyle={styles.select}
+            buttonTextStyle={styles.selectText}
+          />
+        </View>
+      </View>
+      <InputForm
         onChangeText={(city) => setRanchData({ ...ranch, city })}
         value={ranch.city}
-        placeholder="Ciudad"
-        style={styles.input}
+        name="keyboard-arrow-right"
+        placeholder="Municipio"
       />
-      <View style={styles.row}>
-        <Input
-          onChangeText={(areaSpace) => setRanchData({ ...ranch, areaSpace })}
-          value={ranch.areaSpace}
-          placeholder="Área de espacio en hectáreas"
-          keyboardType="numeric"
-          style={styles.input}
-        />
-      </View>
+
       <PrimaryButton text="Registrar" onPress={register} />
     </View>
   );
