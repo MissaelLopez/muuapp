@@ -8,6 +8,7 @@ import Subtitle from "../components/Subtitle";
 import ForgotPassText from "../components/ForgotPassText";
 import logo from "../assets/images/logo.png";
 import { styles } from "../components/Styles";
+import InputForm from "../components/InputForm";
 
 const Signup = ({ navigation }) => {
   const [fullname, setFullname] = useState(null);
@@ -59,25 +60,29 @@ const Signup = ({ navigation }) => {
     <View style={styles.container}>
       <Image source={logo} style={styles.logo} />
       <Subtitle text="Registrate" />
-      <Input
+      <InputForm
+        name="portrait"
         value={fullname}
         onChangeText={(fullname) => setFullname(fullname)}
         placeholder="Nombre Completo"
       />
-      <Input
+      <InputForm
+        name="perm-identity"
         value={username}
         onChangeText={(username) => setUsername(username)}
         placeholder="Nombre de usuario"
         autoCapitalize="none"
       />
-      <Input
+      <InputForm
+        name="mail-outline"
         value={email}
         onChangeText={(email) => setEmail(email)}
         placeholder="Correo Electrónico"
         autoCapitalize="none"
         keyboardType="email-address"
       />
-      <Input
+      <InputForm
+        name="lock-outline"
         value={password}
         onChangeText={(password) => setPassword(password)}
         placeholder="Contraseña"

@@ -153,7 +153,7 @@ export const ranchRegisterStyles = StyleSheet.create({
     padding: 10,
     borderColor: "#936037",
     borderBottomWidth: 1,
-    width: "80%",
+    width: "90%",
     height: 50,
     marginTop: 20,
     borderRadius: 4,

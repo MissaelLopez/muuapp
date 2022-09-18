@@ -10,6 +10,7 @@ import { styles } from "../components/Styles";
 import logo from "../assets/images/logo.png";
 import Subtitle from "../components/Subtitle";
 import ForgotPassText from "../components/ForgotPassText";
+import InputForm from "../components/InputForm";
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const Login = ({ navigation }) => {
     <View style={styles.container}>
       <Image source={logo} style={styles.logo} />
       <Subtitle text="Ingresa a tu cuenta" />
-      <Input
+      {/* <Input
         value={email}
         onChangeText={(email) => setEmail(email)}
         placeholder="Correo Electrónico"
@@ -53,7 +54,24 @@ const Login = ({ navigation }) => {
         placeholder="Contraseña"
         autoCapitalize="none"
         secureTextEntry={true}
+      /> */}
+      <InputForm
+        name="mail-outline"
+        value={email}
+        onChangeText={(email) => setEmail(email)}
+        placeholder="Correo Electrónico"
+        autoCapitalize="none"
+        keyboardType="email-address"
       />
+      <InputForm
+        name="lock-outline"
+        value={password}
+        onChangeText={(password) => setPassword(password)}
+        placeholder="Contraseña"
+        autoCapitalize="none"
+        secureTextEntry={true}
+      />
+
       <ForgotPassText text="¿Olvidaste tu contraseña?" />
       <PrimaryButton text="Iniciar sesión" onPress={onLogin} />
       <ForgotPassText text="---------------------------------- O -----------------------------------" />
