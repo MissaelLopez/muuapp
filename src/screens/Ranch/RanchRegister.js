@@ -6,6 +6,7 @@ import {
   Image,
   Text,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { setRanch } from "../../../store/slices/ranchs";
@@ -116,7 +117,8 @@ const RanchRegister = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView>
+      <View style={styles.container}>
       <Text style={styles.subtitule}>Ingresa los datos de tu Finca</Text>
 
       <Image
@@ -179,6 +181,7 @@ const RanchRegister = ({ navigation }) => {
         value={ranch.areaSpace}
         name="6-ft-apart"
         placeholder="Área de espacio en hectáreas"
+        keyboardType="numeric"
       />
       <View style={styles.textInput}>
         <Entypo name="location" size={24} style={styles.iconStyle} />
@@ -225,6 +228,7 @@ const RanchRegister = ({ navigation }) => {
 
       <PrimaryButton text="Registrar Finca" onPress={register} />
     </View>
+    </ScrollView>
   );
 };
 
