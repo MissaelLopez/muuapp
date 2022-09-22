@@ -223,7 +223,7 @@ const RanchRegister = ({ navigation }) => {
         placeholder="Municipio"
       />
 
-      <PrimaryButton text="Registrar" onPress={register} />
+      <PrimaryButton text="Registrar Finca" onPress={register} />
     </View>
   );
 };

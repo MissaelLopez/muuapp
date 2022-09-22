@@ -10,6 +10,7 @@ import Home from "../screens/Home";
 import Ranchs from "../screens/Ranch/Ranchs";
 import CustomDrawer from "../components/CustomDrawer";
 import HeaderButton from "../components/HeaderButton";
+import Cows from "../screens/Cow/Cows";
 
 const Drawer = createDrawerNavigator();
 
@@ -41,6 +42,10 @@ const AppStack = ({ navigation }) => {
     navigation.navigate("Registrar_Finca");
   };
 
+  const handlePressTwo = () => {
+    navigation.navigate("Registrar_Vaca");
+  };
+
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -51,11 +56,25 @@ const AppStack = ({ navigation }) => {
       drawerContent={(props) => <CustomDrawer {...props} />}
     >
       <Drawer.Screen
-        name="Ganado"
+        name="Home"
         component={Home}
         options={{
           drawerIcon: ({ color }) => (
+            <MCIcon name="Home" size={22} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Ganado"
+        component={Cows}
+        options={{
+          drawerIcon: ({ color }) => (
             <MCIcon name="cow" size={22} color={color} />
+          ),
+          headerRight: () => (
+            <View style={{ width: "50%" }}>
+              <HeaderButton text="New-cow" onPress={handlePressTwo} />
+            </View>
           ),
         }}
       />
@@ -64,11 +83,11 @@ const AppStack = ({ navigation }) => {
         component={Ranchs}
         options={{
           drawerIcon: ({ color }) => (
-            <MCIcon name="warehouse" size={2} color={color} />
+            <MCIcon name="warehouse" size={22} color={color} />
           ),
           headerRight: () => (
             <View style={{ width: "50%" }}>
-              <HeaderButton text="Nuevo" onPress={handlePress} />
+              <HeaderButton text="New-ranch" onPress={handlePress} />
             </View>
           ),
         }}
