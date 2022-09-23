@@ -30,7 +30,14 @@ const RanchDetail = (props) => {
 
   return (
     <View>
-      <Text>{ranch.name}</Text>
+      <Text style={{color:"red"}}>{ranch.name}</Text>
+      <Text>{ranch.purpose}</Text>
+      <Text>{ranch.picture}</Text>
+      <Text>{ranch.country}</Text>
+      <Text>{ranch.state}</Text>
+      <Text>{ranch.city}</Text>
+      <Text>{ranch.production}</Text>
+      <Text>{ranch.areaspace}</Text>
       <Button onPress={handlePress} title="Eliminar" />
     </View>
   );

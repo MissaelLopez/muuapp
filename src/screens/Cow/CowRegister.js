@@ -31,16 +31,22 @@ const CowRegister = ({ navigation }) => {
   const dispatch = useDispatch();
   const [uploading, setUploading] = useState(false);
   const [cow, setCowData] = useState({
+    name:"",
     picture:
       "https://storage.contextoganadero.com/s3fs-public/ganaderia/field_image/2017-03/finca_productiva.jpg",
-    sex: "",
-    stage: "",
+    gender: "",
     breed: "",
+    utp:"",
+    dateBirth:"",
+    phase: "",
+    weight:"",
+    ranch:"",
+    dad:"",
+    mom:"",
   });
-  const sex = ["Macho", "Hembra"];
-  const stage = ["Destetado", "Novillo", "Ternero", "Toro", "Vaca"];
-  const breed = ["Machito F1","Suizo", "Brahman", "Holandes"];
-
+  const gender = ["Macho", "Hembra"];
+  const phase = ["Destetado", "Novillo", "Ternero", "Toro", "Vaca"];
+  const breed = ["Machito F1", "Suizo", "Brahman", "Holandes"];
 
   // const production = ["Natural", "Inseminación"];
 
@@ -114,7 +120,13 @@ const CowRegister = ({ navigation }) => {
           <Text style={styles.textButton}>Seleccionar imagen</Text>
         </TouchableOpacity>
 
-        <InputForm name="account-box" placeholder="Nombre del bobino" />
+        <InputForm 
+          data={name}
+          onSelect={(selectedItem) => {
+            setCowData({ ...cow, name: selectedItem });
+          }}
+          name="account-box" placeholder="Nombre del bobino"
+        />
 
         <View
           style={{
@@ -126,9 +138,9 @@ const CowRegister = ({ navigation }) => {
           <View style={styles.inputBoxCont}>
             <Fontisto name="intersex" size={24} color="black" />
             <SelectDropdown
-              data={sex}
+              data={gender}
               onSelect={(selectedItem) => {
-                setCowData({ ...cow, sex: selectedItem });
+                setCowData({ ...cow, gender: selectedItem });
               }}
               defaultButtonText="Sexo"
               buttonStyle={styles.select}
@@ -168,12 +180,22 @@ const CowRegister = ({ navigation }) => {
             justifyContent: "center",
           }}
         >
-          <InputForm name="1k" placeholder="Número de Arete" />
-          <InputForm name="date-range" placeholder="Nacimiento" />
+          <InputForm
+            data={utp}
+            onSelect={(selectedItem) => {
+              setRanchData({ ...ranch, utp: selectedItem });
+            }}
+            name="1k"
+            placeholder="Número de Arete"
+          />
+
+          <InputForm 
+            data={dateBirth}
+            onSelect={(selectedItem) => {
+              setRanchData({ ...ranch, dateBirth: selectedItem });
+            }}
+            name="date-range" placeholder="Nacimiento" />
         </View>
-
-        <InputForm name="1k" placeholder="Numero de arete" />
-
         <View style={styles.textInput}>
           <Entypo name="#" size={24} style={styles.iconStyle} />
           <Text style={styles.subtitule2}>Padres</Text>
@@ -192,7 +214,7 @@ const CowRegister = ({ navigation }) => {
               style={styles.iconStyle}
             />
             <SelectDropdown
-              data={stage}
+              data={dad}
               onSelect={(selectedItem) => {
                 setCowData({ ...cow, stage: selectedItem });
               }}
@@ -208,7 +230,7 @@ const CowRegister = ({ navigation }) => {
               style={styles.iconStyle}
             />
             <SelectDropdown
-              data={stage}
+              data={mom}
               onSelect={(selectedItem) => {
                 setCowData({ ...cow, stage: selectedItem });
               }}
@@ -220,7 +242,11 @@ const CowRegister = ({ navigation }) => {
         </View>
 
         <View style={styles.textInput}>
-          <MaterialCommunityIcons name="weight-kilogram" size={24} style={styles.iconStyle}/>
+          <MaterialCommunityIcons
+            name="weight-kilogram"
+            size={24}
+            style={styles.iconStyle}
+          />
           <Text style={styles.subtitule2}>Pesos</Text>
         </View>
         <View
@@ -230,10 +256,15 @@ const CowRegister = ({ navigation }) => {
             justifyContent: "center",
           }}
         >
-        <InputForm name="keyboard-arrow-right" placeholder="Al nacer" />
-        <InputForm name="keyboard-arrow-right" placeholder="Destetar" />
-        <InputForm name="keyboard-arrow-right" placeholder="1 año" />
-
+          <InputForm
+            data={weight}
+            onSelect={(selectedItem) => {
+              setCowData({ ...cow, weight: selectedItem });
+            }}
+            name="keyboard-arrow-right" placeholder="Al nacer" />
+          <InputForm name="keyboard-arrow-right" placeholder="Destetar" />
+          <InputForm name="keyboard-arrow-right" placeholder="1 año" />
+          {/* weight */}
         </View>
 
         <PrimaryButton text="Registrar bobino" onPress={register} />
