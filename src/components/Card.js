@@ -15,7 +15,7 @@ const RanchCard = ({ navigation, ranch }) => {
     <TouchableOpacity style={styles.card} onPress={handlePress}>
       <View style={styles.cardContent}>
         <Image source={bgi} style={styles.cardImage} />
-        <Text>{ranch.name}</Text>
+        <Text>Nombre {ranch.name}</Text>
         <Text>{ranch.purpose}</Text>
       </View>
       {/* {props.ranch._id === "6303f95dc2f324fb76cbb991" && (

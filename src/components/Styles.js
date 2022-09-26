@@ -19,6 +19,13 @@ export const buttonsStyle = StyleSheet.create({
     borderRadius: 4,
     width: "90%",
   },
+  deleteButton: {
+    backgroundColor: "#E74C3C",
+    padding: 7,
+    marginTop: 20,
+    borderRadius: 4,
+    width: "90%",
+  },
   textPrimaryButton: {
     textAlign: "center",
     color: "white",
@@ -144,7 +151,7 @@ export const cardStyles = StyleSheet.create({
 
 export const ranchRegisterStyles = StyleSheet.create({
   container: {
-    paddingVertical: 20,
+    paddingVertical: 10,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -165,7 +172,7 @@ export const ranchRegisterStyles = StyleSheet.create({
     borderColor: "#936037",
     backgroundColor: "transparent",
     color: "#936037",
-    borderColor: '#936037',
+    // borderColor: '#936037',
     borderRadius: 4,
     paddingHorizontal: 0,
     height: 40,
@@ -180,9 +187,11 @@ export const ranchRegisterStyles = StyleSheet.create({
     height: 150,
     width: 150,
     borderRadius: 100,
+    backgroundColor: "#936037",
     resizeMode: "contain",
     marginBottom: 10,
   },
+  
   inputBoxCont: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -200,9 +209,10 @@ export const ranchRegisterStyles = StyleSheet.create({
     color: '#936037'
   },
   subtitule: {
+    paddingTop: 8,
     fontSize: 20,
     color: '#936037',
-    paddingBottom: 10,
+    paddingBottom: 7,
   },
   textInput: {
     alignItems: 'center',
@@ -215,11 +225,17 @@ export const ranchRegisterStyles = StyleSheet.create({
     marginLeft: '4%',
   },
   subtitule2: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#936037',
-    paddingTop: 8,
+    // paddingTop: 5,
     flex: 1,
-    paddingHorizontal: 5,
+    // paddingHorizontal: 5,
+  },
+  subtituleTh: {
+    fontSize: 16,
+    color: '#936037',
+    flex: 1,
+    fontWeight: 'bold'
   },
   buttont: {
     backgroundColor: "#785a35",
