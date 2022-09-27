@@ -56,15 +56,6 @@ const AppStack = ({ navigation }) => {
       drawerContent={(props) => <CustomDrawer {...props} />}
     >
       <Drawer.Screen
-        name="Home"
-        component={Home}
-        options={{
-          drawerIcon: ({ color }) => (
-            <MCIcon name="Home" size={22} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
         name="Ganado"
         component={Cows}
         options={{

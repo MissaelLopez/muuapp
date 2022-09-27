@@ -25,24 +25,31 @@ import {
   SimpleLineIcons,
 } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
+import CalendarPicker from "react-native-calendar-picker";
 
 const CowRegister = ({ navigation }) => {
   const { id, token } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [uploading, setUploading] = useState(false);
   const [cow, setCowData] = useState({
-    name:"",
+    nombre: "",
     picture:
       "https://storage.contextoganadero.com/s3fs-public/ganaderia/field_image/2017-03/finca_productiva.jpg",
-    gender: "",
-    breed: "",
-    utp:"",
-    dateBirth:"",
-    phase: "",
-    weight:"",
-    ranch:"",
-    dad:"",
-    mom:"",
+    genero: "",
+    raza: "",
+    utp: "",
+    fechaNacimiento: "",
+    etapa: "",
+    peso: {
+      nacer: "",
+      destetar: "",
+      unAnio: "",
+    },
+    padres: {
+      padre: "",
+      madre: "",
+    },
+    ranch: "",
   });
   const gender = ["Macho", "Hembra"];
   const phase = ["Destetado", "Novillo", "Ternero", "Toro", "Vaca"];
@@ -85,8 +92,9 @@ const CowRegister = ({ navigation }) => {
         return false;
       }
     }
+    console.log(cow);
 
-    try {
+    /* try {
       const { data, status } = await postAPI.post("/cows", cow, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -102,7 +110,7 @@ const CowRegister = ({ navigation }) => {
     } catch (error) {
       console.log(error);
       Alert.alert("error");
-    }
+    } */
   };
 
   return (
@@ -120,12 +128,11 @@ const CowRegister = ({ navigation }) => {
           <Text style={styles.textButton}>Seleccionar imagen</Text>
         </TouchableOpacity>
 
-        <InputForm 
-          data={name}
-          onSelect={(selectedItem) => {
-            setCowData({ ...cow, name: selectedItem });
-          }}
-          name="account-box" placeholder="Nombre del bobino"
+        <InputForm
+          value={cow.name}
+          onChangeText={(name) => setCowData({ ...cow, name })}
+          name="account-box"
+          placeholder="Nombre del bobino"
         />
 
         <View
@@ -136,7 +143,7 @@ const CowRegister = ({ navigation }) => {
           }}
         >
           <View style={styles.inputBoxCont}>
-            <Fontisto name="intersex" size={24} color="black" />
+            <Fontisto name="intersex" size={24} style={styles.iconStyle} />
             <SelectDropdown
               data={gender}
               onSelect={(selectedItem) => {
@@ -160,11 +167,11 @@ const CowRegister = ({ navigation }) => {
             />
           </View>
           <View style={styles.inputBoxCont}>
-            <Fontisto name="#" size={24} style={styles.iconStyle} />
+            <Fontisto name="phase" size={24} style={styles.iconStyle} />
             <SelectDropdown
-              data={stage}
+              data={phase}
               onSelect={(selectedItem) => {
-                setCowData({ ...cow, stage: selectedItem });
+                setCowData({ ...cow, phase: selectedItem });
               }}
               defaultButtonText="Etapa"
               buttonStyle={styles.select}
@@ -181,23 +188,21 @@ const CowRegister = ({ navigation }) => {
           }}
         >
           <InputForm
-            data={utp}
-            onSelect={(selectedItem) => {
-              setRanchData({ ...ranch, utp: selectedItem });
-            }}
+            data={cow.utp}
+            onChangeText={(utp) => setRanchData({ ...cow, utp })}
             name="1k"
             placeholder="Número de Arete"
           />
 
-          <InputForm 
-            data={dateBirth}
-            onSelect={(selectedItem) => {
-              setRanchData({ ...ranch, dateBirth: selectedItem });
-            }}
-            name="date-range" placeholder="Nacimiento" />
+          <InputForm
+            value={cow.dateBirth}
+            onChangeText={(dateBirth) => setRanchData({ ...cow, dateBirth })}
+            name="date-range"
+            placeholder="Nacimiento"
+          />
         </View>
         <View style={styles.textInput}>
-          <Entypo name="#" size={24} style={styles.iconStyle} />
+          <Entypo name="phase" size={24} style={styles.iconStyle} />
           <Text style={styles.subtitule2}>Padres</Text>
         </View>
         <View
@@ -214,9 +219,9 @@ const CowRegister = ({ navigation }) => {
               style={styles.iconStyle}
             />
             <SelectDropdown
-              data={dad}
+              data={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
               onSelect={(selectedItem) => {
-                setCowData({ ...cow, stage: selectedItem });
+                setCowData({ ...cow, dad: selectedItem });
               }}
               defaultButtonText="Padre"
               buttonStyle={styles.select}
@@ -230,9 +235,9 @@ const CowRegister = ({ navigation }) => {
               style={styles.iconStyle}
             />
             <SelectDropdown
-              data={mom}
+              data={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
               onSelect={(selectedItem) => {
-                setCowData({ ...cow, stage: selectedItem });
+                setCowData({ ...cow, mom: selectedItem });
               }}
               defaultButtonText="Madre"
               buttonStyle={styles.select}
@@ -257,14 +262,15 @@ const CowRegister = ({ navigation }) => {
           }}
         >
           <InputForm
-            data={weight}
-            onSelect={(selectedItem) => {
-              setCowData({ ...cow, weight: selectedItem });
-            }}
-            name="keyboard-arrow-right" placeholder="Al nacer" />
+            value={cow.weight}
+            onChangeText={(selectedItem) =>
+              setCowData({ ...cow, weight: selectedItem })
+            }
+            name="keyboard-arrow-right"
+            placeholder="Al nacer"
+          />
           <InputForm name="keyboard-arrow-right" placeholder="Destetar" />
           <InputForm name="keyboard-arrow-right" placeholder="1 año" />
-          {/* weight */}
         </View>
 
         <PrimaryButton text="Registrar bobino" onPress={register} />

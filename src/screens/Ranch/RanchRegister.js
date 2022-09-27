@@ -203,6 +203,7 @@ const RanchRegister = ({ navigation }) => {
               defaultButtonText="Producción..."
               buttonStyle={styles.select}
               buttonTextStyle={styles.selectText}
+              dropdownStyle={{ marginLeft: -50 }}
             />
           </View>
         </View>

@@ -191,7 +191,13 @@ export const ranchRegisterStyles = StyleSheet.create({
     resizeMode: "contain",
     marginBottom: 10,
   },
-  
+  cowPicture: {
+    height: 150,
+    width: 150,
+    borderRadius: 100,
+    resizeMode: "contain",
+    marginBottom: 10,
+  },
   inputBoxCont: {
     alignItems: 'center',
     flexDirection: 'row',
