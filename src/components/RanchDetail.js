@@ -40,6 +40,7 @@ const RanchDetail = (props) => {
   return (
     <ScrollView>
       <View style={styles.container}>
+        <Image source={{ uri: ranch.picture }} style={styles.ranchPicture} />
         <View style={styles.textInput}>
           <MaterialCommunityIcons
             name="card-bulleted-outline"
@@ -48,7 +49,6 @@ const RanchDetail = (props) => {
           />
           <Text style={styles.subtitule}>Datos Generales</Text>
         </View>
-        <Image source={{ uri: ranch.picture }} style={styles.ranchPicture} />
         <View style={styles.textInput}>
           <MaterialIcons
             name="house-siding"
@@ -82,7 +82,7 @@ const RanchDetail = (props) => {
         <View style={styles.textInput}>
           <MaterialIcons name="6-ft-apart" size={24} style={styles.iconStyle} />
           <Text style={styles.subtitule2}>Area: </Text>
-          <Text style={styles.subtituleTh}>{ranch.areaspace}</Text>
+          <Text style={styles.subtituleTh}>{ranch.areaSpace}</Text>
         </View>
 
         <View style={styles.textInput}>
