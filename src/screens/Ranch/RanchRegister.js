@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   View,
   Alert,
-  Button,
   Image,
   Text,
   TouchableOpacity,
@@ -13,7 +12,6 @@ import { setRanch } from "../../../store/slices/ranchs";
 import { getUserById, postAPI } from "../../api";
 import SelectDropdown from "react-native-select-dropdown";
 import * as ImagePicker from "expo-image-picker";
-// import Input from "../../components/Input";
 import PrimaryButton from "../../components/PrimaryButton";
 import { ranchRegisterStyles as styles } from "../../components/Styles";
 import CustomAlert from "../../components/CustomAlert";
@@ -28,7 +26,6 @@ import {
 const RanchRegister = ({ navigation }) => {
   const { id, token } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [uploading, setUploading] = useState(false);
   const [ranch, setRanchData] = useState({
     name: "",
     picture:
@@ -258,7 +255,6 @@ const RanchRegister = ({ navigation }) => {
               data={st ? states && st.map((state) => state.name) : states}
               onSelect={(selectedItem) => {
                 setRanchData({ ...ranch, state: selectedItem });
-                console.log();
               }}
               defaultButtonText="Estado..."
               buttonStyle={styles.select}

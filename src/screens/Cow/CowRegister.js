@@ -1,18 +1,8 @@
-import { useState } from "react";
-import {
-  View,
-  Alert,
-  Button,
-  Image,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { useEffect, useState } from "react";
+import { View, Image, Text, TouchableOpacity, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-// import { setRanch } from "../../../store/slices/ranchs";
-import { getUserById, postAPI } from "../../api";
 import SelectDropdown from "react-native-select-dropdown";
 import * as ImagePicker from "expo-image-picker";
-// import Input from "../../components/Input";
 import PrimaryButton from "../../components/PrimaryButton";
 import { ranchRegisterStyles as styles } from "../../components/Styles";
 import CustomAlert from "../../components/CustomAlert";
@@ -20,16 +10,22 @@ import InputForm from "../../components/InputForm";
 import {
   MaterialCommunityIcons,
   Entypo,
-  MaterialIcons,
   Fontisto,
-  SimpleLineIcons, Feather,
+  SimpleLineIcons,
+  Feather,
+  MaterialIcons,
 } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { getCowsByRanchId, postAPI } from "../../api";
+import { setCows } from "../../../store/slices/cows/cowSlice";
 
 const CowRegister = ({ navigation }) => {
   const { id, token } = useSelector((state) => state.user);
+  const { selectedRanch } = useSelector((state) => state.ranchs);
+  const { cows } = useSelector((state) => state.cows);
   const dispatch = useDispatch();
-  const [uploading, setUploading] = useState(false);
+
   const [cow, setCowData] = useState({
     nombre: "",
     picture:
@@ -37,7 +33,7 @@ const CowRegister = ({ navigation }) => {
     genero: "",
     raza: "",
     utp: "",
-    fechaNacimiento: "",
+    fechaNacimiento: new Date(),
     etapa: "",
     peso: {
       nacer: "",
@@ -48,20 +44,42 @@ const CowRegister = ({ navigation }) => {
       padre: "",
       madre: "",
     },
-    ranch: "ss",
+    ranch: selectedRanch[0]._id,
   });
+  const [datePicker, setDatePicker] = useState(false);
+  const [machos, setMachos] = useState([]);
+  const [hembras, setHembras] = useState([]);
+
   const gender = ["Macho", "Hembra"];
   const phase = ["Destetado", "Novillo", "Ternero", "Toro", "Vaca"];
   const breed = ["Machito F1", "Suizo", "Brahman", "Holandes"];
 
-  // const production = ["Natural", "Inseminación"];
+  const getMachos = () => {
+    const machos = cows.filter((cow) => cow.genero === "Macho");
+    setMachos(machos);
+  };
 
-  // const updatecowStore = async () => {
-  //   const { data, status } = await getUserById(id, token);
-  //   if (status === 200) {
-  //     dispatch(setCow(data.cows));
-  //   }
-  // };
+  const getHembras = () => {
+    const hembras = cows.filter((cow) => cow.genero === "Hembra");
+    setHembras(hembras);
+  };
+
+  const updateCowStore = async (id) => {
+    const { data, status } = await getCowsByRanchId(id, token);
+
+    if (status === 200) {
+      dispatch(setCows(data.cows));
+    }
+  };
+
+  function showDatePicker() {
+    setDatePicker(true);
+  }
+
+  function onDateSelected(event, value) {
+    setCowData({ ...cow, fechaNacimiento: value });
+    setDatePicker(false);
+  }
 
   const openImagePickerAsync = async () => {
     const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -85,37 +103,40 @@ const CowRegister = ({ navigation }) => {
   };
 
   const register = async () => {
-    /* /* for (const [key, value] of Object.entries(cow)) {
+    for (const [key, value] of Object.entries(cow)) {
       if (cow[key] === "") {
         console.log(`El campo ${key} no puede estar vacio`);
         return false;
       }
-    } */ */
-    console.log(cow);
+    }
 
-    /* try {
+    try {
       const { data, status } = await postAPI.post("/cows", cow, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
       if (status === 201) {
-        updateCowStore();
+        updateCowStore(selectedRanch[0]._id);
         CustomAlert(
           "MuuApp",
           "Tu registro ha sido exitoso",
-          navigation.navigate("Finca")
+          navigation.navigate("Bobino")
         );
       }
     } catch (error) {
-      console.log(error);
-      Alert.alert("error");
-    } */
+      Alert.alert(error.response.data.msg);
+    }
   };
+
+  useEffect(() => {
+    getMachos();
+    getHembras();
+  }, []);
 
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={styles.subtitule}>Ingresa los datos de tu bobino</Text>
+        <Text style={styles.subtitule}>Ingresa los datos de tu bovino</Text>
 
         <Image
           source={{
@@ -131,7 +152,7 @@ const CowRegister = ({ navigation }) => {
           value={cow.nombre}
           onChangeText={(nombre) => setCowData({ ...cow, nombre })}
           name="account-box"
-          placeholder="Nombre del bobino"
+          placeholder="Nombre del bovino"
         />
 
         <View
@@ -154,7 +175,11 @@ const CowRegister = ({ navigation }) => {
             />
           </View>
           <View style={styles.inputBoxCont}>
-            <MaterialCommunityIcons name="chart-donut" size={24} style={styles.iconStyle} />
+            <MaterialCommunityIcons
+              name="chart-donut"
+              size={24}
+              style={styles.iconStyle}
+            />
             <SelectDropdown
               data={breed}
               onSelect={(selectedItem) => {
@@ -176,7 +201,6 @@ const CowRegister = ({ navigation }) => {
               buttonStyle={styles.select}
               buttonTextStyle={styles.selectText}
               dropdownStyle={{ marginLeft: -100 }}
-              dropdownStyle={{ marginLeft: -100 }}
             />
           </View>
         </View>
@@ -194,11 +218,35 @@ const CowRegister = ({ navigation }) => {
             name="1k"
             placeholder="Número de Arete"
           />
+          <View style={styles.inputBoxCont}>
+            {datePicker && (
+              <DateTimePicker
+                timeZoneOffsetInMinutes={60}
+                value={cow.fechaNacimiento}
+                mode={"date"}
+                is24Hour={true}
+                onChange={onDateSelected}
+              />
+            )}
+            <MaterialIcons
+              name="date-range"
+              size={24}
+              style={styles.iconStyle}
+            />
 
-          <DateTimeInput />
+            <TouchableOpacity onPress={showDatePicker}>
+              <Text style={{ color: "#936037" }}>
+                {cow.fechaNacimiento.toDateString()}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.textInput}>
-          <Entypo name="phase" size={24} style={styles.iconStyle} />
+          <MaterialCommunityIcons
+            name="cow"
+            size={24}
+            style={styles.iconStyle}
+          />
           <Text style={styles.subtitule2}>Padres</Text>
         </View>
         <View
@@ -215,11 +263,14 @@ const CowRegister = ({ navigation }) => {
               style={styles.iconStyle}
             />
             <SelectDropdown
-              data={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
+              data={machos.map((macho) => macho.nombre)}
               onSelect={(selectedItem) => {
+                const idMacho = machos.filter(
+                  (macho) => macho.nombre === selectedItem
+                )[0]._id;
                 setCowData({
                   ...cow,
-                  padres: { padre: selectedItem, madre: cow.padres.madre },
+                  padres: { padre: idMacho, madre: cow.padres.madre },
                 });
               }}
               defaultButtonText="Padre"
@@ -234,16 +285,20 @@ const CowRegister = ({ navigation }) => {
               style={styles.iconStyle}
             />
             <SelectDropdown
-              data={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
+              data={hembras.map((hembra) => hembra.nombre)}
               onSelect={(selectedItem) => {
+                const idHembra = hembras.filter(
+                  (hembra) => hembra.nombre === selectedItem
+                )[0]._id;
                 setCowData({
                   ...cow,
-                  padres: { padre: cow.padres.padre, madre: selectedItem },
+                  padres: { padre: cow.padres.padre, madre: idHembra },
                 });
               }}
               defaultButtonText="Madre"
               buttonStyle={styles.select}
               buttonTextStyle={styles.selectText}
+              dropdownStyle={{ marginLeft: -50 }}
             />
           </View>
         </View>
@@ -277,6 +332,7 @@ const CowRegister = ({ navigation }) => {
             }
             name="keyboard-arrow-right"
             placeholder="Al nacer"
+            keyboardType="numeric"
           />
           <InputForm
             value={cow.peso.destetar}
@@ -292,6 +348,7 @@ const CowRegister = ({ navigation }) => {
             }
             name="keyboard-arrow-right"
             placeholder="Destetar"
+            keyboardType="numeric"
           />
           <InputForm
             value={cow.peso.unAnio}
@@ -307,10 +364,11 @@ const CowRegister = ({ navigation }) => {
             }
             name="keyboard-arrow-right"
             placeholder="1 año"
+            keyboardType="numeric"
           />
         </View>
 
-        <PrimaryButton text="Registrar bobino" onPress={register} />
+        <PrimaryButton text="Registrar bovino" onPress={register} />
       </View>
     </ScrollView>
   );

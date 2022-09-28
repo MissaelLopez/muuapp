@@ -16,3 +16,15 @@ export const getUserById = async (id, token) => {
     return error.message;
   }
 };
+
+export const getCowsByRanchId = async (id, token) => {
+  try {
+    const { data, status } = await api.get(`/ranchs/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return { data, status };
+  } catch (error) {
+    return error.message;
+  }
+};
