@@ -3,29 +3,28 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { Image, Text, View } from "react-native";
+import { Image, ImageBackground, Text, View } from "react-native";
 import { useSelector } from "react-redux";
-
-const bgi = {
-  uri: "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000",
-};
-
-const image = {
-  uri: "https://www.adslzone.net/app/uploads-adslzone.net/2022/04/free-avatar-apertura.jpg?x=480&y=375&quality=40",
-};
 
 const CustomDrawer = (props) => {
   const { user } = useSelector((state) => state.user);
-  
+  const { selectedRanch } = useSelector((state) => state.ranchs);
+
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView
         {...props}
         contentContainerStyle={{ backgroundColor: "#c79556" }}
       >
-        <View style={{ padding: 20 }}>
+        <ImageBackground
+          source={{ uri: selectedRanch && selectedRanch[0].picture }}
+          style={{ padding: 20 }}
+          imageStyle={{ opacity: 0.5 }}
+        >
           <Image
-            source={image}
+            source={{
+              uri: "https://cresord.org/wp-content/uploads/2021/07/avatar-1577909_960_720.png",
+            }}
             style={{
               height: 80,
               width: 80,
@@ -34,7 +33,10 @@ const CustomDrawer = (props) => {
             }}
           />
           <Text style={{ color: "#fff", fontSize: 18 }}>{user.fullname}</Text>
-        </View>
+          <Text style={{ color: "#fff", fontSize: 18 }}>
+            {selectedRanch && selectedRanch[0].name}
+          </Text>
+        </ImageBackground>
         <View style={{ flex: 1, backgroundColor: "#fff" }}>
           <DrawerItemList {...props} />
         </View>

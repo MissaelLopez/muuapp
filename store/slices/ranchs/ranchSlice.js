@@ -1,9 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const ranchSlice = createSlice({
-  name: 'ranch',
+  name: "ranch",
   initialState: {
     ranchs: [],
+    selectedRanch: null,
     isLoading: false,
   },
   reducers: {
@@ -16,7 +17,11 @@ export const ranchSlice = createSlice({
     updateRanch: (state, action) => {
       state.ranchs.push(action.payload);
     },
-  }
+    setSelectedRanch: (state, action) => {
+      state.selectedRanch = action.payload;
+    },
+  },
 });
 
-export const { startLoadingRanch, setRanch, updateRanch} = ranchSlice.actions;
+export const { startLoadingRanch, setRanch, updateRanch, setSelectedRanch } =
+  ranchSlice.actions;

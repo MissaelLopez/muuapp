@@ -5,6 +5,8 @@ import Signup from "../screens/Signup";
 import AppStack from "./AppStack";
 import RanchDetail from "../components/RanchDetail";
 import RanchRegister from "../screens/Ranch/RanchRegister";
+import CowRegister from "../screens/Cow/CowRegister";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +28,11 @@ const AuthStack = () => {
         component={RanchRegister}
         name="Registrar_Finca"
         options={{ title: "Registrar Finca", headerShown: true }}
+      />
+      <Stack.Screen
+        component={CowRegister}
+        name="Registrar_Vaca"
+        options={{ title: "Registrar Bobino", headerShown: true }}
       />
     </Stack.Navigator>
   );

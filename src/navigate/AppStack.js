@@ -3,19 +3,28 @@ import { View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/slices/user";
-import { setRanch } from "../../store/slices/ranchs";
-import { getUserById } from "../api";
+import { setRanch, setSelectedRanch } from "../../store/slices/ranchs";
+import { setCows } from "../../store/slices/cows";
+import { getCowsByRanchId, getUserById } from "../api";
 import MCIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import Home from "../screens/Home";
 import Ranchs from "../screens/Ranch/Ranchs";
 import CustomDrawer from "../components/CustomDrawer";
 import HeaderButton from "../components/HeaderButton";
+import Cows from "../screens/Cow/Cows";
 
 const Drawer = createDrawerNavigator();
 
 const AppStack = ({ navigation }) => {
   const { id, token } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
+  const getCows = async (id) => {
+    const { data, status } = await getCowsByRanchId(id, token);
+    
+    if (status === 200) {
+      dispatch(setCows(data.cows));
+    }
+  };
 
   const getUserData = async () => {
     const { data, status } = await getUserById(id, token);
@@ -28,7 +37,14 @@ const AppStack = ({ navigation }) => {
         version: data.version,
       };
 
+      const selectedRanch = data.ranchs.filter(
+        (ranch) => ranch.isSelected === true
+      );
+
+      getCows(selectedRanch[0]._id);
+
       dispatch(setRanch(data.ranchs));
+      dispatch(setSelectedRanch(selectedRanch));
       dispatch(setUser(userData));
     }
   };
@@ -41,6 +57,10 @@ const AppStack = ({ navigation }) => {
     navigation.navigate("Registrar_Finca");
   };
 
+  const handlePressTwo = () => {
+    navigation.navigate("Registrar_Vaca");
+  };
+
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -51,11 +71,16 @@ const AppStack = ({ navigation }) => {
       drawerContent={(props) => <CustomDrawer {...props} />}
     >
       <Drawer.Screen
-        name="Ganado"
-        component={Home}
+        name="Bobino"
+        component={Cows}
         options={{
           drawerIcon: ({ color }) => (
             <MCIcon name="cow" size={22} color={color} />
+          ),
+          headerRight: () => (
+            <View style={{ width: "50%" }}>
+              <HeaderButton text="New-cow" onPress={handlePressTwo} />
+            </View>
           ),
         }}
       />
@@ -64,11 +89,11 @@ const AppStack = ({ navigation }) => {
         component={Ranchs}
         options={{
           drawerIcon: ({ color }) => (
-            <MCIcon name="warehouse" size={2} color={color} />
+            <MCIcon name="warehouse" size={22} color={color} />
           ),
           headerRight: () => (
             <View style={{ width: "50%" }}>
-              <HeaderButton text="Nuevo" onPress={handlePress} />
+              <HeaderButton text="New-ranch" onPress={handlePress} />
             </View>
           ),
         }}
