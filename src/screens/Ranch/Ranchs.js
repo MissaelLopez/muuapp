@@ -48,7 +48,7 @@ const Ranchs = ({ navigation }) => {
       </ScrollView>
     );
   } else {
-    return <Text>Comienza a registrar</Text>;
+    return <Text>Comienza a registrar2</Text>;
   }
 
 };
