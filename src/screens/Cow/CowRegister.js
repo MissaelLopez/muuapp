@@ -22,7 +22,7 @@ import {
   Entypo,
   MaterialIcons,
   Fontisto,
-  SimpleLineIcons,
+  SimpleLineIcons, Feather,
 } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 // import CalendarPicker from "react-native-calendar-picker";
@@ -157,7 +157,7 @@ const CowRegister = ({ navigation }) => {
             />
           </View>
           <View style={styles.inputBoxCont}>
-            <Fontisto name="breed" size={24} style={styles.iconStyle} />
+            <MaterialCommunityIcons name="chart-donut" size={24} style={styles.iconStyle} />
             <SelectDropdown
               data={breed}
               onSelect={(selectedItem) => {
@@ -169,7 +169,7 @@ const CowRegister = ({ navigation }) => {
             />
           </View>
           <View style={styles.inputBoxCont}>
-            <Fontisto name="phase" size={24} style={styles.iconStyle} />
+            <Feather name="bar-chart" size={24} style={styles.iconStyle} />
             <SelectDropdown
               data={phase}
               onSelect={(selectedItem) => {
