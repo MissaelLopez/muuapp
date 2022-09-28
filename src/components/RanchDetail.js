@@ -17,6 +17,7 @@ const RanchDetail = (props) => {
   const { id, token } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const ranch = props.route.params.ranch;
+  console.log(ranch);
 
   const updateRanchStore = async () => {
     const { data, status } = await getUserById(id, token);

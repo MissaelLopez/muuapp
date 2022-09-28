@@ -4,6 +4,7 @@ export const ranchSlice = createSlice({
   name: 'ranch',
   initialState: {
     ranchs: [],
+    selectedRanch: null,
     isLoading: false,
   },
   reducers: {
@@ -16,6 +17,7 @@ export const ranchSlice = createSlice({
     updateRanch: (state, action) => {
       state.ranchs.push(action.payload);
     },
+    setSelectedRanch: (state, action) => {},
   }
 });
 

@@ -25,9 +25,6 @@ import {
   SimpleLineIcons, Feather,
 } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
-// import CalendarPicker from "react-native-calendar-picker";
-import DateTimeInput from "../../components/DateTimeInput";
-
 
 const CowRegister = ({ navigation }) => {
   const { id, token } = useSelector((state) => state.user);
@@ -51,7 +48,7 @@ const CowRegister = ({ navigation }) => {
       padre: "",
       madre: "",
     },
-    ranch: "",
+    ranch: "ss",
   });
   const gender = ["Macho", "Hembra"];
   const phase = ["Destetado", "Novillo", "Ternero", "Toro", "Vaca"];
@@ -88,12 +85,12 @@ const CowRegister = ({ navigation }) => {
   };
 
   const register = async () => {
-    for (const [key, value] of Object.entries(cow)) {
+    /* /* for (const [key, value] of Object.entries(cow)) {
       if (cow[key] === "") {
         console.log(`El campo ${key} no puede estar vacio`);
         return false;
       }
-    }
+    } */ */
     console.log(cow);
 
     /* try {
@@ -131,8 +128,8 @@ const CowRegister = ({ navigation }) => {
         </TouchableOpacity>
 
         <InputForm
-          value={cow.name}
-          onChangeText={(name) => setCowData({ ...cow, name })}
+          value={cow.nombre}
+          onChangeText={(nombre) => setCowData({ ...cow, nombre })}
           name="account-box"
           placeholder="Nombre del bobino"
         />
@@ -149,9 +146,9 @@ const CowRegister = ({ navigation }) => {
             <SelectDropdown
               data={gender}
               onSelect={(selectedItem) => {
-                setCowData({ ...cow, gender: selectedItem });
+                setCowData({ ...cow, genero: selectedItem });
               }}
-              defaultButtonText="Sexo"
+              defaultButtonText="Genero"
               buttonStyle={styles.select}
               buttonTextStyle={styles.selectText}
             />
@@ -161,7 +158,7 @@ const CowRegister = ({ navigation }) => {
             <SelectDropdown
               data={breed}
               onSelect={(selectedItem) => {
-                setCowData({ ...cow, breed: selectedItem });
+                setCowData({ ...cow, raza: selectedItem });
               }}
               defaultButtonText="Raza"
               buttonStyle={styles.select}
@@ -173,11 +170,13 @@ const CowRegister = ({ navigation }) => {
             <SelectDropdown
               data={phase}
               onSelect={(selectedItem) => {
-                setCowData({ ...cow, phase: selectedItem });
+                setCowData({ ...cow, etapa: selectedItem });
               }}
               defaultButtonText="Etapa"
               buttonStyle={styles.select}
               buttonTextStyle={styles.selectText}
+              dropdownStyle={{ marginLeft: -100 }}
+              dropdownStyle={{ marginLeft: -100 }}
             />
           </View>
         </View>
@@ -191,7 +190,7 @@ const CowRegister = ({ navigation }) => {
         >
           <InputForm
             data={cow.utp}
-            onChangeText={(utp) => setRanchData({ ...cow, utp })}
+            onChangeText={(utp) => setCowData({ ...cow, utp })}
             name="1k"
             placeholder="Número de Arete"
           />
@@ -218,7 +217,10 @@ const CowRegister = ({ navigation }) => {
             <SelectDropdown
               data={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
               onSelect={(selectedItem) => {
-                setCowData({ ...cow, dad: selectedItem });
+                setCowData({
+                  ...cow,
+                  padres: { padre: selectedItem, madre: cow.padres.madre },
+                });
               }}
               defaultButtonText="Padre"
               buttonStyle={styles.select}
@@ -234,7 +236,10 @@ const CowRegister = ({ navigation }) => {
             <SelectDropdown
               data={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
               onSelect={(selectedItem) => {
-                setCowData({ ...cow, mom: selectedItem });
+                setCowData({
+                  ...cow,
+                  padres: { padre: cow.padres.padre, madre: selectedItem },
+                });
               }}
               defaultButtonText="Madre"
               buttonStyle={styles.select}
@@ -259,15 +264,50 @@ const CowRegister = ({ navigation }) => {
           }}
         >
           <InputForm
-            value={cow.weight}
-            onChangeText={(selectedItem) =>
-              setCowData({ ...cow, weight: selectedItem })
+            value={cow.peso.nacer}
+            onChangeText={(nacer) =>
+              setCowData({
+                ...cow,
+                peso: {
+                  nacer,
+                  destetar: cow.peso.destetar,
+                  unAnio: cow.peso.unAnio,
+                },
+              })
             }
             name="keyboard-arrow-right"
             placeholder="Al nacer"
           />
-          <InputForm name="keyboard-arrow-right" placeholder="Destetar" />
-          <InputForm name="keyboard-arrow-right" placeholder="1 año" />
+          <InputForm
+            value={cow.peso.destetar}
+            onChangeText={(destetar) =>
+              setCowData({
+                ...cow,
+                peso: {
+                  nacer: cow.peso.nacer,
+                  destetar,
+                  unAnio: cow.peso.unAnio,
+                },
+              })
+            }
+            name="keyboard-arrow-right"
+            placeholder="Destetar"
+          />
+          <InputForm
+            value={cow.peso.unAnio}
+            onChangeText={(unAnio) =>
+              setCowData({
+                ...cow,
+                peso: {
+                  nacer: cow.peso.nacer,
+                  destetar: cow.peso.destetar,
+                  unAnio,
+                },
+              })
+            }
+            name="keyboard-arrow-right"
+            placeholder="1 año"
+          />
         </View>
 
         <PrimaryButton text="Registrar bobino" onPress={register} />
