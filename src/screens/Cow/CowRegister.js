@@ -25,7 +25,9 @@ import {
   SimpleLineIcons,
 } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
-import CalendarPicker from "react-native-calendar-picker";
+// import CalendarPicker from "react-native-calendar-picker";
+import DateTimeInput from "../../components/DateTimeInput";
+
 
 const CowRegister = ({ navigation }) => {
   const { id, token } = useSelector((state) => state.user);
@@ -194,12 +196,7 @@ const CowRegister = ({ navigation }) => {
             placeholder="Número de Arete"
           />
 
-          <InputForm
-            value={cow.dateBirth}
-            onChangeText={(dateBirth) => setRanchData({ ...cow, dateBirth })}
-            name="date-range"
-            placeholder="Nacimiento"
-          />
+          <DateTimeInput />
         </View>
         <View style={styles.textInput}>
           <Entypo name="phase" size={24} style={styles.iconStyle} />

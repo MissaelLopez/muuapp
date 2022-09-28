@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
     width: '90%',
     marginTop: 15,
     paddingHorizontal: 3,
-    height: 40,
+    height: 50,
     marginRight: '4%',
     marginLeft: '4%',
 
@@ -207,7 +207,7 @@ export const ranchRegisterStyles = StyleSheet.create({
     width: '90%',
     marginTop: 15,
     paddingHorizontal: 3,
-    height: 40,
+    height: 50,
     marginRight: '4%',
     marginLeft: '4%',
   },

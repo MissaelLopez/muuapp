@@ -56,7 +56,7 @@ const AppStack = ({ navigation }) => {
       drawerContent={(props) => <CustomDrawer {...props} />}
     >
       <Drawer.Screen
-        name="Ganado"
+        name="Bobino"
         component={Cows}
         options={{
           drawerIcon: ({ color }) => (
