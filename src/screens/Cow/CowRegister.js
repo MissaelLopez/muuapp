@@ -157,7 +157,7 @@ const CowRegister = ({ navigation }) => {
             />
           </View>
           <View style={styles.inputBoxCont}>
-            <MaterialCommunityIcons name="chart-donut" size={24} style={styles.iconStyle} />
+            <MaterialCommunityIcons name="family-tree" size={24} style={styles.iconStyle} />
             <SelectDropdown
               data={breed}
               onSelect={(selectedItem) => {
@@ -199,7 +199,7 @@ const CowRegister = ({ navigation }) => {
           <DateTimeInput />
         </View>
         <View style={styles.textInput}>
-          <Entypo name="phase" size={24} style={styles.iconStyle} />
+          <MaterialCommunityIcons name="cow" size={24} style={styles.iconStyle} />
           <Text style={styles.subtitule2}>Padres</Text>
         </View>
         <View
